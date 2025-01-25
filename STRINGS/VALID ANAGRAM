@@ -1,1 +1,41 @@
+import java.util.Arrays;
+
+/**
+ * This class provides a solution to the Valid Anagram problem.
+ * An anagram is defined as a word or phrase formed by rearranging
+ * the letters of a different word or phrase, using all the original letters exactly once.
+ */
+public class Solution {
+
+    /**
+     * Determines if two strings are anagrams of each other.
+     *
+     * @param s The first input string.
+     * @param t The second input string.
+     * @return true if the strings are anagrams; otherwise, false.
+     */
+    public boolean isAnagram(String s, String t) {
+        // Check if the lengths of the strings are different
+        if (s.length() != t.length()) {
+            return false; // Strings of different lengths cannot be anagrams
+        }
+        // Sort both strings and compare the results
+        return sort(s).equals(sort(t));
+    }
+
+    /**
+     * Sorts the characters of a string in ascending order.
+     *
+     * @param a The input string to be sorted.
+     * @return A new string with the characters sorted in ascending order.
+     */
+    public String sort(String a) {
+        // Convert the string into a character array
+        char[] chars = a.toCharArray();
+        // Sort the character array
+        Arrays.sort(chars);
+        // Convert the sorted array back into a string and return it
+        return new String(chars);
+    }
+}
 
