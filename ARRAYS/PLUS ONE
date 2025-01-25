@@ -1,1 +1,35 @@
+/**
+ * This class provides a solution to the Plus One problem.
+ * The Plus One problem involves adding one to a non-negative integer represented
+ * as an array of digits, where the most significant digit is at the start of the array.
+ */
+public class Solution {
+
+    /**
+     * Adds one to the integer represented by the given array of digits.
+     *
+     * @param digits An array of integers representing a non-negative integer.
+     *               Each element in the array is a single digit (0-9).
+     * @return A new array of integers representing the resulting number after adding one.
+     */
+    public int[] plusOne(int[] digits) {
+        int n = digits.length;
+
+        // Traverse the array from the last digit to the first
+        for (int i = n - 1; i >= 0; i--) {
+            if (digits[i] < 9) {
+                // Increment the current digit if it is less than 9
+                digits[i]++;
+                return digits; // Return early as no carry is generated
+            }
+            // If the digit is 9, it becomes 0 and we carry over to the next significant digit
+            digits[i] = 0;
+        }
+
+        // If all digits were 9, we need to handle the carry by adding a new most significant digit
+        int[] result = new int[n + 1]; // Create a new array with an extra digit
+        result[0] = 1; // The most significant digit becomes 1
+        return result;
+    }
+}
 
