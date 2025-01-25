@@ -1,1 +1,41 @@
+/**
+ * This class provides a solution to the Pivot Index problem.
+ * The Pivot Index is defined as the index in an array where the sum of
+ * the elements to the left equals the sum of the elements to the right.
+ */
+public class Solution {
+
+    /**
+     * Finds the pivot index in an array where the sum of elements to the left of the index
+     * equals the sum of elements to the right of the index.
+     *
+     * @param nums An array of integers to search within.
+     * @return The pivot index if it exists; otherwise, returns -1.
+     */
+    public int pivotIndex(int[] nums) {
+        // Iterate through each element in the array
+        for (int i = 0; i < nums.length; i++) {
+            int sum1 = 0; // Sum of elements to the left of the current index
+            int sum2 = 0; // Sum of elements to the right of the current index
+
+            // Calculate the sum of elements to the left of the current index
+            for (int j = 0; j < i; j++) {
+                sum1 += nums[j];
+            }
+
+            // Calculate the sum of elements to the right of the current index
+            for (int j = i + 1; j < nums.length; j++) {
+                sum2 += nums[j];
+            }
+
+            // Check if the left sum equals the right sum
+            if (sum1 == sum2) {
+                return i; // Return the pivot index
+            }
+        }
+
+        // Return -1 if no pivot index is found
+        return -1;
+    }
+}
 
