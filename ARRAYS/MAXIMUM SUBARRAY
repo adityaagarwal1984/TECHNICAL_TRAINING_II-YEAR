@@ -1,1 +1,30 @@
+/**
+ * This class provides a solution to the Maximum Subarray problem.
+ * The problem asks to find the contiguous subarray (containing at least one number)
+ * within a one-dimensional array of numbers, which has the largest sum.
+ */
+public class Solution {
+
+    /**
+     * Finds the maximum sum of a contiguous subarray within the given array.
+     * This implementation uses Kadane's algorithm to solve the problem efficiently.
+     *
+     * @param nums An array of integers representing the input array.
+     * @return The maximum sum of the contiguous subarray.
+     */
+    public int maxSubArray(int[] nums) {
+        int maxSoFar = nums[0];  // This holds the maximum sum found so far
+        int maxEndingHere = nums[0];  // This holds the maximum sum of the subarray that ends at the current position
+
+        // Iterate through the array starting from the second element
+        for (int i = 1; i < nums.length; i++) {
+            // Either start a new subarray with the current element or extend the current subarray
+            maxEndingHere = Math.max(nums[i], maxEndingHere + nums[i]);
+            // Update the global maximum sum
+            maxSoFar = Math.max(maxSoFar, maxEndingHere);
+        }
+        
+        return maxSoFar;  // Return the maximum sum found
+    }
+}
 
