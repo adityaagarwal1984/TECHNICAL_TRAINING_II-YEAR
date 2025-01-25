@@ -1,1 +1,37 @@
+/**
+ * This class provides a solution to the Two Sum problem.
+ * The Two Sum problem is defined as finding two indices in an array
+ * such that the sum of the values at those indices equals a specified target.
+ */
+public class Solution {
+
+    /**
+     * Finds two indices in the input array such that the sum of the values
+     * at those indices equals the given target value.
+     *
+     * @param nums   An array of integers to search within.
+     * @param target The target sum to achieve with two elements of the array.
+     * @return An array of two integers, representing the indices of the two elements
+     *         whose values sum to the target. If no solution is found, behavior is undefined.
+     */
+    public int[] twoSum(int[] nums, int target) {
+        // Initialize an array to store the result indices.
+        int arr[] = new int[2];
+
+        // Iterate through the array using a nested loop to find the pair of numbers.
+        for (int i = 0; i < nums.length - 1; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                // Check if the current pair of numbers adds up to the target.
+                if (nums[i] + nums[j] == target) {
+                    arr[0] = i; // Store the first index.
+                    arr[1] = j; // Store the second index.
+                    break; // Exit the inner loop once the pair is found.
+                }
+            }
+        }
+
+        // Return the indices of the numbers that add up to the target.
+        return arr;
+    }
+}
 
