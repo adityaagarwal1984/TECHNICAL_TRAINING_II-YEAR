@@ -1,0 +1,32 @@
+/**
+ * This class contains a solution to calculate the sum of the primary and secondary diagonal elements of a square matrix.
+ */
+class Solution {
+    /**
+     * Calculates the sum of the primary and secondary diagonal elements of a square matrix.
+     * 
+     * @param mat A 2D integer array representing the square matrix.
+     * @return An integer representing the sum of the diagonal elements.
+     */
+    public int diagonalSum(int[][] mat) {
+        int n = mat.length; // The size of the square matrix
+        int sum = 0; // Variable to store the sum of the diagonal elements
+        
+        // Iterate over each row of the matrix
+        for (int i = 0; i < n; i++) {
+            int low = i;            // Index of the primary diagonal element in row i
+            int high = n - i - 1;   // Index of the secondary diagonal element in row i
+            
+            // If the indices of the primary and secondary diagonal elements are the same
+            if (low == high) {
+                sum += mat[i][low]; // Add the single element at the intersection of the diagonals
+            } else {
+                // Add both the primary and secondary diagonal elements
+                sum += mat[i][low] + mat[i][high];
+            }
+        }
+        
+        // Return the final sum of the diagonal elements
+        return sum;
+    }
+}
