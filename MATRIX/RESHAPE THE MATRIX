@@ -1,0 +1,37 @@
+/**
+ * Solution class to reshape a matrix.
+ */
+class Solution {
+    /**
+     * Reshapes a given matrix into the specified dimensions (r x c).
+     * If reshaping is not possible, the original matrix is returned.
+     *
+     * @param mat The input matrix.
+     * @param r   The number of rows in the reshaped matrix.
+     * @param c   The number of columns in the reshaped matrix.
+     * @return The reshaped matrix, or the original matrix if reshaping is not possible.
+     */
+    public int[][] matrixReshape(int[][] mat, int r, int c) {
+        int m = mat.length; // Number of rows in the original matrix
+        int n = mat[0].length; // Number of columns in the original matrix
+
+        // Check if reshaping is possible
+        if (m * n != r * c) {
+            return mat;
+        }
+
+        // Create a new matrix to hold the reshaped result
+        int[][] reshapedMatrix = new int[r][c];
+        int k = 0; // Index to iterate over elements in a 1D perspective
+
+        // Fill the reshaped matrix
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                reshapedMatrix[k / c][k % c] = mat[i][j];
+                k++;
+            }
+        }
+
+        return reshapedMatrix;
+    }
+}
