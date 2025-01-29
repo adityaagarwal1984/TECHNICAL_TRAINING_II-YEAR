@@ -1,0 +1,57 @@
+class Solution {
+    /**
+     * Returns the elements of the given 2D matrix in diagonal order.
+     * 
+     * The traversal follows a zigzag pattern:
+     * - Starts from the top-left corner.
+     * - Moves diagonally upwards-right until hitting the boundary.
+     * - Switches direction to downwards-left when hitting a boundary.
+     * 
+     * @param mat The input 2D integer matrix.
+     * @return An integer array representing the diagonal traversal.
+     */
+    public int[] findDiagonalOrder(int[][] mat) {
+        // Handle empty input case
+        if (mat == null || mat.length == 0) {
+            return new int[0];
+        }
+
+        int m = mat.length; // Number of rows
+        int n = mat[0].length; // Number of columns
+        int[] ans = new int[m * n]; // Output array to store diagonal order
+        int r = 0, c = 0, i = 0; // Pointers for matrix traversal
+        boolean up = true; // Direction flag (true = up-right, false = down-left)
+
+        // Loop through all elements of the matrix
+        while (i < m * n) {
+            ans[i++] = mat[r][c]; // Store current element in output array
+
+            if (up) {
+                // If moving up-right
+                if (c == n - 1) {
+                    r++; // Move down if at the last column
+                    up = false;
+                } else if (r == 0) {
+                    c++; // Move right if at the first row
+                    up = false;
+                } else {
+                    r--; // Move diagonally up
+                    c++;
+                }
+            } else {
+                // If moving down-left
+                if (r == m - 1) {
+                    c++; // Move right if at the last row
+                    up = true;
+                } else if (c == 0) {
+                    r++; // Move down if at the first column
+                    up = true;
+                } else {
+                    r++; // Move diagonally down
+                    c--;
+                }
+            }
+        }
+        return ans; // Return the final diagonal traversal order
+    }
+}
