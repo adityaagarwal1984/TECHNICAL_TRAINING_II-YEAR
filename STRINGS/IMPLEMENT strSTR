@@ -1,1 +1,30 @@
+/**
+ * Class Solution contains a method to find the first occurrence of a substring (needle) 
+ * within a given string (haystack) using a sliding window approach.
+ */
+class Solution {
+    /**
+     * Finds the first index where the substring (needle) appears in the string (haystack).
+     * If the needle is not found, it returns -1.
+     * 
+     * @param haystack The main string in which we are searching for the needle.
+     * @param needle The substring we need to find in the haystack.
+     * @return The starting index of the first occurrence of needle in haystack, or -1 if not found.
+     */
+    public int strStr(String haystack, String needle) {
+        int i = 0; // Start index of the current substring window
+        
+        // Loop through the haystack while ensuring the substring length matches needle length
+        for (int j = needle.length(); j <= haystack.length(); j++) {
+            // Extract the substring from index 'i' to 'j' and compare it with needle
+            if (haystack.substring(i, j).equals(needle)) {
+                return i; // Return the starting index if a match is found
+            } else {
+                i++; // Move the window forward
+            }
+        }
+        
+        return -1; // Return -1 if needle is not found in haystack
+    }
+}
 
