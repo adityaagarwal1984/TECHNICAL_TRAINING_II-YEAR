@@ -1,1 +1,25 @@
+class Solution {
+    /**
+     * Reverses the given character array in-place.
+     *
+     * This method swaps characters from the beginning and end,
+     * progressively moving towards the center until the entire array is reversed.
+     *
+     * @param s The character array to be reversed.
+     */
+    public void reverseString(char[] s) {
+        int i = 0, j = s.length - 1; // Initialize two pointers: one at the start, one at the end
+        
+        while (i < j) { // Loop until the two pointers meet or cross
+            // Swap characters at positions i and j
+            char temp = s[i];
+            s[i] = s[j];
+            s[j] = temp;
+            
+            // Move pointers towards the center
+            i++;
+            j--;
+        }
+    }
+}
 
