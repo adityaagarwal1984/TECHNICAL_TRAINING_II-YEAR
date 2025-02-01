@@ -1,0 +1,100 @@
+/**
+ * Implementation of a Circular Queue using an array.
+ * This class provides basic queue operations like enqueue, dequeue, and checking the front/rear elements.
+ * 
+ * Circular Queue follows the FIFO (First In First Out) principle and uses modulo arithmetic
+ * to wrap around when reaching the end of the array.
+ */
+class MyCircularQueue {
+    
+    private int[] queue; // Array to store queue elements
+    private int front, rear, size; // Front and rear pointers, and size of the queue
+
+    /**
+     * Constructor to initialize the circular queue with a given size.
+     * @param k The size of the queue.
+     */
+    public MyCircularQueue(int k) {
+        queue = new int[k]; // Initialize array with size k
+        front = -1; // Front pointer initialized to -1 (queue is empty)
+        rear = -1; // Rear pointer initialized to -1 (queue is empty)
+        size = k; // Store the size of the queue
+    }
+
+    /**
+     * Inserts an element into the circular queue.
+     * @param value The value to be inserted.
+     * @return True if insertion is successful, otherwise false.
+     */
+    public boolean enQueue(int value) {
+        if (isFull()) { // Check if the queue is full
+            return false;
+        }
+        if (front == -1) { // If inserting the first element, set front to 0
+            front = 0;
+        }
+        rear = (rear + 1) % size; // Move rear to the next position (circularly)
+        queue[rear] = value; // Insert the value
+        return true;
+    }
+
+    /**
+     * Removes an element from the circular queue.
+     * @return True if deletion is successful, otherwise false.
+     */
+    public boolean deQueue() {
+        if (isEmpty()) { // Check if the queue is empty
+            return false;
+        }
+        if (front == rear) { // If only one element left, reset queue
+            front = -1;
+            rear = -1;
+        } else {
+            front = (front + 1) % size; // Move front to the next position (circularly)
+        }
+        return true;
+    }
+
+    /**
+     * Retrieves the front element of the queue.
+     * @return The front element, or -1 if the queue is empty.
+     */
+    public int Front() {
+        return isEmpty() ? -1 : queue[front];
+    }
+
+    /**
+     * Retrieves the last element of the queue.
+     * @return The last element, or -1 if the queue is empty.
+     */
+    public int Rear() {
+        return isEmpty() ? -1 : queue[rear];
+    }
+
+    /**
+     * Checks if the circular queue is empty.
+     * @return True if the queue is empty, otherwise false.
+     */
+    public boolean isEmpty() {
+        return front == -1;
+    }
+
+    /**
+     * Checks if the circular queue is full.
+     * @return True if the queue is full, otherwise false.
+     */
+    public boolean isFull() {
+        return (rear + 1) % size == front;
+    }
+}
+
+/**
+ * Example usage:
+ * MyCircularQueue obj = new MyCircularQueue(k);
+ * boolean param_1 = obj.enQueue(value);
+ * boolean param_2 = obj.deQueue();
+ * int param_3 = obj.Front();
+ * int param_4 = obj.Rear();
+ * boolean param_5 = obj.isEmpty();
+ * boolean param_6 = obj.isFull();
+ */
