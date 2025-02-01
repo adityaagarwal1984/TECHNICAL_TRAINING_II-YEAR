@@ -1,0 +1,61 @@
+/*
+ * MyStack class implements a stack using two queues.
+ * 
+ * Algorithm:
+ * - push(x): Move all elements from q1 to q2, add x to q1, then move elements back from q2 to q1.
+ * - pop(): Remove and return the front element of q1.
+ * - top(): Return the front element of q1 without removing it.
+ * - empty(): Check if q1 is empty.
+ * 
+ * Time Complexity:
+ * - push: O(N) (due to moving elements between queues)
+ * - pop: O(1) (direct removal from the queue)
+ * - top: O(1) (direct access to the front element)
+ * - empty: O(1) (check if queue is empty)
+ * 
+ * Space Complexity: O(N) (using two queues to store elements)
+ */
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+class MyStack {
+    
+    private Queue<Integer> q1 = new LinkedList<>();
+    private Queue<Integer> q2 = new LinkedList<>();
+    
+    // Push an element onto the stack
+    public void push(int x) {
+        while (!q1.isEmpty()) {
+            q2.add(q1.remove());
+        }
+        q1.add(x);
+        while (!q2.isEmpty()) {
+            q1.add(q2.remove());
+        }
+    }
+    
+    // Remove and return the top element of the stack
+    public int pop() {
+        return q1.remove();
+    }
+    
+    // Return the top element without removing it
+    public int top() {
+        return q1.peek();
+    }
+    
+    // Check if the stack is empty
+    public boolean empty() {
+        return q1.isEmpty();
+    }
+}
+
+/**
+ * Usage example:
+ * MyStack obj = new MyStack();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.top();
+ * boolean param_4 = obj.empty();
+ */
