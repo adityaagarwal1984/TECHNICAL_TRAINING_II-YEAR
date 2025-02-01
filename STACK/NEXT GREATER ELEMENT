@@ -1,0 +1,39 @@
+/*
+ * Solution class to find the next greater element for each element of nums1 in nums2.
+ * 
+ * Algorithm:
+ * - Iterate through each element in nums1.
+ * - Find the corresponding element in nums2.
+ * - Look for the next greater element in nums2.
+ * - If found, store it; otherwise, store -1.
+ * 
+ * Time Complexity: O(N*M) (where N is the length of nums1 and M is the length of nums2)
+ * Space Complexity: O(N) (result array storage)
+ */
+
+class Solution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        int[] r = new int[nums1.length];
+        
+        // Iterate through each element in nums1
+        for (int i = 0; i < nums1.length; i++) {
+            r[i] = -1;
+            
+            // Find the position of nums1[i] in nums2
+            for (int j = 0; j < nums2.length; j++) {
+                if (nums1[i] == nums2[j]) {
+                    
+                    // Search for the next greater element in nums2
+                    for (int k = j + 1; k < nums2.length; k++) {
+                        if (nums2[k] > nums2[j]) {
+                            r[i] = nums2[k];
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        return r;
+    }
+}
