@@ -1,0 +1,40 @@
+/*
+ * Solution class to find the middle index of an array where 
+ * the sum of elements on the left is equal to the sum of elements on the right.
+ * 
+ * Algorithm:
+ * - Iterate through each index of the array.
+ * - Compute the sum of elements on the left and the right of the current index.
+ * - If the left sum equals the right sum, return the current index.
+ * - If no such index exists, return -1.
+ * 
+ * Time Complexity: O(N^2) (due to nested loops for sum calculations)
+ * Space Complexity: O(1) (only integer variables are used)
+ */
+
+class Solution {
+    public int findMiddleIndex(int[] nums) {
+        // Iterate through each index to check for middle index condition
+        for (int i = 0; i < nums.length; i++) {
+            int sumLeft = 0;
+            int sumRight = 0;
+            
+            // Calculate the sum of elements to the left of index i
+            for (int j = 0; j < i; j++) {
+                sumLeft += nums[j];
+            }
+            
+            // Calculate the sum of elements to the right of index i
+            for (int j = i + 1; j < nums.length; j++) {
+                sumRight += nums[j];
+            }
+            
+            // Check if left and right sums are equal
+            if (sumLeft == sumRight) {
+                return i; // Return the middle index if found
+            }
+        }
+        
+        return -1; // Return -1 if no middle index exists
+    }
+}
