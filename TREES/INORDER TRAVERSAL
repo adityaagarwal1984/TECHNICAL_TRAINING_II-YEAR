@@ -1,0 +1,57 @@
+import java.util.List;
+import java.util.ArrayList;
+
+/**
+ * Class Solution provides an implementation of in-order traversal for a binary tree.
+ * In-order traversal follows the order: Left -> Root -> Right.
+ */
+class Solution {
+    /**
+     * Performs in-order traversal on a binary tree.
+     *
+     * @param root The root node of the binary tree.
+     * @return A list of integers representing the in-order traversal sequence.
+     */
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>(); // List to store traversal output.
+        inorderHelper(root, result); // Helper function to traverse the tree.
+        return result;
+    }
+
+    /**
+     * Helper method to perform recursive in-order traversal.
+     *
+     * @param root   The current node in the traversal.
+     * @param result The list to store traversal results.
+     */
+    private void inorderHelper(TreeNode root, List<Integer> result) {
+        if (root == null) { // Base case: If node is null, return.
+            return;
+        }
+        
+        inorderHelper(root.left, result); // Traverse the left subtree.
+        result.add(root.val); // Add the root node value.
+        inorderHelper(root.right, result); // Traverse the right subtree.
+    }
+}
+
+/**
+ * Definition for a binary tree node.
+ */
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode() {}
+
+    TreeNode(int val) {
+        this.val = val;
+    }
+
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+} 
